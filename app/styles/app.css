@@ -1,20 +1,65 @@
-body {
-    background-color: #FFFFFF;
+* {
+    margin: 0;
+    padding: 0;
 }
 
-.ui.menu .item img.logo {
-    margin-right: 1.5em;
+body {
+    margin-bottom: 60px;
 }
 
 .main.container {
     margin-top: 7em;
 }
 
-.wireframe {
-    margin-top: 2em;
+.ui.grid.main {
+    margin-top: 70px;
+}
+
+.mobile.row {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+.mobile.row .ui.inverted.menu {
+    border-radius: 0 !important;
+}
+
+.padding-reset {
+    padding: 0 !important;
+}
+
+.ui.message {
+    padding: 40px !important;
+}
+
+@media (max-width: 767px) {
+    .ui.grid.main {
+        margin-top: 70px;
+    }
+
+    .ui.vertical.menu.navbar {
+        margin-top: 4.6em !important;
+        position: relative;
+        z-index: 1000;
+    }
+}
+
+.ui.vertical.menu {
+    margin-top: -15px !important;
+    width: 100%;
+    display: none;
+}
+
+.ui.vertical.menu .item {
+    margin-left: 1em;
+}
+
+.menu.item .sidebar.icon {
+    font-size: 1.2em;
+    margin: 0 !important;
 }
 
 .ui.footer.segment {
-    margin: 5em 0em 0em;
-    padding: 5em 0em;
+    margin: 5em 0 0;
+    padding: 5em 0;
 }
