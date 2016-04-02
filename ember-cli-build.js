@@ -1,7 +1,7 @@
 /*jshint node:true*/
 /* global require, module */
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
-var pickFiles = require('ember-cli/node_modules/broccoli-funnel');
+var pickFiles = require('broccoli-funnel');
 
 module.exports = function (defaults) {
     var app = new EmberApp(defaults, {
