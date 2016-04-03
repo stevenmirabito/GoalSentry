@@ -104,7 +104,10 @@ def get_user_by_id(user_id):
 
 
 @app.route("/users", methods=["POST"])
-def register_user(user_data=request.get_json(force=True)["user"]):
+def register_user(user_data=None):
+    if not user_data:
+        request.get_json(force=True)["user"]
+
     try:
         user = models.User(username=user_data["username"], name=user_data["name"], email=user_data["email"])
         db.add(user)
