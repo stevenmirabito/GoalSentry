@@ -4,7 +4,14 @@
             {{#link-to "index" class="brand item"}}{{site-config "name"}}{{/link-to}}
             {{#link-to "matches" class="item"}}Matches{{/link-to}}
             {{#link-to "rankings" class="item"}}Rankings{{/link-to}}
-            {{#link-to "scoreboard" class="item"}}Scoreboard{{/link-to}}
+            <div class="menu right">
+                {{#link-to "live" class="item"}}
+                    <button class="ui labeled red icon button">
+                        <i class="record icon"></i>
+                        Watch Live Match
+                    </button>
+                {{/link-to}}
+            </div>
         </div>
     </div>
     <div class="mobile only row">
@@ -19,7 +26,12 @@
         <div class="ui vertical navbar menu">
             {{#link-to "matches" class="item"}}Matches{{/link-to}}
             {{#link-to "rankings" class="item"}}Rankings{{/link-to}}
-            {{#link-to "scoreboard" class="item"}}Scoreboard{{/link-to}}
+            {{#link-to "live" class="item"}}
+                <button class="ui labeled red icon button">
+                    <i class="record icon"></i>
+                    Watch Live Match
+                </button>
+            {{/link-to}}
         </div>
     </div>
 {{/responsive-menu}}

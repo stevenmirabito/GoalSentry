@@ -6,9 +6,9 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('scoreboard');
   this.route('matches');
   this.route('rankings');
+  this.route('live');
 });
 
 export default Router;
