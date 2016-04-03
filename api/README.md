@@ -1,14 +1,12 @@
 # Goal Sentry API Documentation
 
-### Tables
-##### Get Tables
-_Not currently implemented._
+### Users
 
-##### Table Status
-Query for the status of a table. This will return the table name, game state, user(s) authenticated, and current scores. Tables have a maximum of two user slots.
+##### Get All Users
+Returns all registered users.
 
 ```
-GET /table/:id
+GET /users
 ```
 
 Example Response:
@@ -18,24 +16,58 @@ Example Response:
     "status": {
         "success": true
     },
-    "table": {
+    "users": {
+        {
+            "id": 1,
+            "username": "sjohnson",
+            "name": "Stanley Johnson",
+            "email": "sjohnson@email.com",
+            "rank": 146
+        },
+        {
+            "id": 2,
+            "username": "jbrown",
+            "name": "Jody Brown",
+            "email": "jbrown@email.com",
+            "rank": 54
+        }
+}
+```
+
+##### Get User by ID
+Returns the data for the user with the specified ID.
+
+```
+GET /user/:id
+```
+
+Example Response:
+
+```
+{
+    "status": {
+        "success": true
+    },
+    "user": {
         "id": 1,
-        "name": "Foosball",
-        "in_use": true
+        "username": "sjohnson",
+        "name": "Stanley Johnson",
+        "email": "sjohnson@email.com",
+        "rank": 146
     }
 }
 ```
 
-##### Create Table
+##### Add New User
 _Not currently implemented._
 
-##### Delete Table
+##### Modify User Metadata
 _Not currently implemented._
 
-##### Modify Table Metadata
+##### Get User by Authentication Identifier
 _Not currently implemented._
 
---------------------
+----------
 
 ### Games
 
@@ -55,37 +87,44 @@ Example Response:
     },
     "games": {
         {
-            "id": "j0zkZ3NMe3zWOYM8jHuLhyQ7RDjMPaFM",
+            "id": 2,
             "table": 1,
             "time_started": 1459676696,
-            "time_completed": 1459676716,
-            "completed": true,
+            "time_completed": null,
+            "completed": false,
             "users": {
-                1: {
-                    "authenticated": true,
-                    "id": 32
-                },
-                2: {
-                    "authenticated": true,
-                    "id": 46
+                {
+                    "id": 1,
+                    "username": "sjohnson",
+                    "name": "Stanley Johnson",
+                    "email": "sjohnson@email.com",
+                    "rank": 146
                 }
             }
         },
         {
-            "id": "wtouO3lgrfuOLbeCQtIxks6BAHQXTCzZ",
+            "id": 1,
             "table": 1,
             "time_started": 1459543696,
             "time_completed": 1459446716,
             "completed": true,
             "users": {
-                1: {
-                    "authenticated": false
+                {
+                    "id": 1,
+                    "username": "sjohnson",
+                    "name": "Stanley Johnson",
+                    "email": "sjohnson@email.com",
+                    "rank": 146
                 },
-                2: {
-                    "authenticated": false
+                {
+                    "id": 2,
+                    "username": "jbrown",
+                    "name": "Jody Brown",
+                    "email": "jbrown@email.com",
+                    "rank": 54
                 }
             }
-        },
+        }
     }
 }
 ```
@@ -108,14 +147,25 @@ Example Response:
         "success": true
     },
     "game": {
-        "uuid": "wtouO3lgrfuOLbeCQtIxks6BAHQXTCzZ",
+        "id": 1,
+        "table": 1,
+        "time_started": 1459543696,
+        "time_completed": 1459446716,
+        "completed": true,
         "users": {
-            1: {
-                "authenticated": true,
-                "id": 32
+            {
+                "id": 1,
+                "username": "sjohnson",
+                "name": "Stanley Johnson",
+                "email": "sjohnson@email.com",
+                "rank": 146
             },
-            2: {
-                "authenticated": false
+            {
+                "id": 2,
+                "username": "jbrown",
+                "name": "Jody Brown",
+                "email": "jbrown@email.com",
+                "rank": 54
             }
         }
     }
@@ -142,19 +192,12 @@ Example Response:
         "success": true
     },
     "game": {
-        "id": "wtouO3lgrfuOLbeCQtIxks6BAHQXTCzZ",
+        "id": 3,
         "table": 1,
-        "time_started": 1459543696,
+        "time_started": 1459599696,
         "time_completed": null,
         "completed": false,
-        "users": {
-            1: {
-                "authenticated": false
-            },
-            2: {
-                "authenticated": false
-            }
-        }
+        "users": { }
     }
 }
 ```
@@ -182,26 +225,20 @@ Example Response:
         "success": true
     },
     "game": {
-        "id": "wtouO3lgrfuOLbeCQtIxks6BAHQXTCzZ",
+        "id": 1,
         "table": 1,
         "time_started": 1459543696,
-        "time_completed": null,
-        "completed": false,
+        "time_completed": 1459446716,
+        "completed": true,
         "users": {
-            1: {
-                "authenticated": true,
-                "id": 1
-            },
-            2: {
-                "authenticated": false
+            {
+                "id": 1,
+                "username": "sjohnson",
+                "name": "Stanley Johnson",
+                "email": "sjohnson@email.com",
+                "rank": 146
             }
         }
-    }
-    "user": {
-        "id": 1,
-        "username": "sjohnson",
-        "name": "Stanley Johnson",
-        "rank": 146
     }
 }
 ```
@@ -228,45 +265,16 @@ Example Response:
 }
 ```
 
---------------------
+----------
 
-### Users
-
-##### Get All Users
-Returns all registered users.
-
-```
-GET /users
-```
-
-Example Response:
+### Tables
+##### Get Tables
+_Not currently implemented._
+##### Table Status
+Query for the status of a table. This will return the table name, game state, user(s) authenticated, and current scores. Tables have a maximum of two user slots.
 
 ```
-{
-    "status": {
-        "success": true
-    },
-    "users": {
-        {
-            "id": 1,
-            "username": "sjohnson",
-            "name": "Stanley Johnson",
-            "rank": 146
-        },
-        {
-            "id": 2,
-            "username": "jbrown",
-            "name": "Jody Brown",
-            "rank": 54
-        }
-}
-```
-
-##### Get User by ID
-Returns the data for the user with the specified ID.
-
-```
-GET /user/:id
+GET /table/:id
 ```
 
 Example Response:
@@ -276,20 +284,42 @@ Example Response:
     "status": {
         "success": true
     },
-    "user": {
+    "table": {
         "id": 1,
-        "username": "sjohnson",
-        "name": "Stanley Johnson",
-        "rank": 146
+        "name": "Foosball",
+        "in_use": true,
+        "game": {
+            "id": 1,
+            "table": 1,
+            "time_started": 1459543696,
+            "time_completed": null,
+            "completed": false,
+            "users": {
+                {
+                    "id": 1,
+                    "username": "sjohnson",
+                    "name": "Stanley Johnson",
+                    "email": "sjohnson@email.com",
+                    "rank": 146
+                },
+                {
+                    "id": 2,
+                    "username": "jbrown",
+                    "name": "Jody Brown",
+                    "email": "jbrown@email.com",
+                    "rank": 54
+                }
+            }
+        }
     }
 }
 ```
 
-##### Add New User
+##### Create Table
 _Not currently implemented._
 
-##### Modify User Metadata
+##### Delete Table
 _Not currently implemented._
 
-##### Get User by Authentication Identifier
+##### Modify Table Metadata
 _Not currently implemented._
