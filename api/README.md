@@ -132,11 +132,11 @@ Example Response:
 ##### Get games for a table
 _Not currently implemented._
 
-##### Get game by UUID
-Start a new game. Automatically updates the table's `in_use` property and returns the new game's alphanumeric UUID (along with its otherwise empty state).
+##### Get game by ID
+Start a new game. Automatically updates the table's `in_use` property and returns the new game's ID (along with its otherwise empty state).
 
 ```
-GET /game/:uuid
+GET /game/:id
 ```
 
 Example Response:
@@ -173,7 +173,7 @@ Example Response:
 ```
 
 ##### Start a New Game
-Start a new game. Automatically updates the table's `in_use` property (based on API key) and returns the new game's alphanumeric UUID (along with its otherwise empty state).
+Start a new game. Automatically updates the table's `in_use` property (based on API key) and returns the new game's ID (along with its otherwise empty state).
 
 ```
 POST /games
@@ -206,7 +206,7 @@ Example Response:
 Authenticate a user to the game by passing the user's RFID or iButton tag identifier. This method will return the updated game state and the user's information for display. For convenience, this method will also register first-time users based on the data obtained from the configured authentication service.
 
 ```
-POST /game/:uuid/authenticate
+POST /game/:id/authenticate
 {
   "token": {
         "key": "TABLE_API_KEY"
@@ -247,7 +247,7 @@ Example Response:
 If the user chooses to end the game early, this method will delete the game and reset the table, including updaing the `in_use` property, clearing all authenticated users. Scores and rankings will not be retained or affected.
 
 ```
-DELETE /game/:uuid
+DELETE /game/:id
 {
   "token": {
         "key": "TABLE_API_KEY"
