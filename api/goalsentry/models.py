@@ -3,13 +3,10 @@ Goal Sentry API
 Models
 """
 
-from sqlalchemy import Column, Integer, String, ForeignKey, Table, DateTime
+from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
 from datetime import datetime as dt
 from sqlalchemy.orm import relationship
 from database import Base
-
-user_game_mapper = Table('user_game_rel', Base.metadata, Column('user_id', Integer, ForeignKey('users.id')),
-                         Column('game_id', Integer, ForeignKey('games.id')))
 
 
 class User(Base):
@@ -22,8 +19,8 @@ class User(Base):
     email = Column(String(120))
     rank = Column(Integer)
 
-    # Create a many-to-many relationship with Game
-    games = relationship("Game", secondary=user_game_mapper, back_populates="users")
+    # Create a one-to-many relationship with Score
+    scores = relationship("Score")
 
     def __init__(self, username=None, name=None, email=None):
         self.username = username
@@ -32,7 +29,7 @@ class User(Base):
         self.rank = 0
 
     def __repr__(self):
-        return '<Student %r>' % self.username
+        return '<User %r>' % self.username
 
 
 class Table(Base):
@@ -60,13 +57,13 @@ class Game(Base):
     time_started = Column(DateTime)
     time_completed = Column(DateTime)
 
-    # Create a many-to-many relationship with User
-    users = relationship("User", secondary=user_game_mapper, back_populates="games")
+    # Create a one-to-many relationship with Score
+    scores = relationship("Score")
 
     # Create a many-to-one relationship with Table
     table_id = Column(Integer, ForeignKey('tables.id'))
 
-    def __init__(self, time_started=None):
+    def __init__(self, time_started=None, table_id=None):
         if time_started:
             # Convert dates to ISO 8601
             self.time_started = dt.strptime(time_started, "%Y-%m-%d %H:%M:%S.%f")
@@ -76,5 +73,33 @@ class Game(Base):
 
         self.time_completed = None
 
+        if table_id:
+            self.table_id = table_id
+
     def __repr__(self):
         return '<Game %r>' % self.id
+
+
+class Score(Base):
+    __tablename__ = 'scores'
+
+    # Basic metadata
+    id = Column(Integer, primary_key=True)
+    score = Column(Integer)
+
+    # Create a one-to-many relationship with User
+    user_id = Column(Integer, ForeignKey('users.id'))
+
+    # Create a one-to-many relationship with Game
+    game_id = Column(Integer, ForeignKey('games.id'))
+
+    def __init__(self, score=0, user_id=None, game_id=None):
+        self.score = score
+        if user_id:
+            self.user_id = user_id
+
+        if game_id:
+            self.game_id = game_id
+
+    def __repr__(self):
+        return '<Score %r>' % self.id
