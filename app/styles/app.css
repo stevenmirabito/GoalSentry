@@ -59,3 +59,8 @@
     margin: 5em 0 0;
     padding: 2em 0;
 }
+
+.ui.attached.segment .flip-clock {
+    width: 140px;
+    margin: 0 auto;
+}

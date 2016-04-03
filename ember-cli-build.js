@@ -30,5 +30,10 @@ module.exports = function (defaults) {
         destDir: '/assets/themes/default/assets/fonts'
     });
 
+    // FlipClock
+    // Not installed with Bower because it breaks the build
+    app.import('vendor/flipclock/flipclock.css');
+    app.import('vendor/flipclock/flipclock.min.js');
+
     return app.toTree([semanticIcons]);
 };
