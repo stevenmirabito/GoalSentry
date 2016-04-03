@@ -8,8 +8,8 @@ from datetime import datetime as dt
 from sqlalchemy.orm import relationship
 from database import Base
 
-user_game_mapper = Table('user_game_rel', Base.metadata, Column('user_id', Integer, ForeignKey('user.id')),
-                         Column('game_uuid', Integer, ForeignKey('game.uuid')))
+user_game_mapper = Table('user_game_rel', Base.metadata, Column('user_id', Integer, ForeignKey('users.id')),
+                         Column('game_id', Integer, ForeignKey('games.id')))
 
 
 class User(Base):
@@ -43,7 +43,7 @@ class Table(Base):
     name = Column(String(120))
 
     # Create a one-to-many relationship with Game
-    games = relationship("Game", backref="table")
+    games = relationship("Game")
 
     def __init__(self, name=None):
         self.name = name
@@ -64,7 +64,7 @@ class Game(Base):
     users = relationship("User", secondary=user_game_mapper, back_populates="games")
 
     # Create a many-to-one relationship with Table
-    table = relationship("Table", backref="games")
+    table_id = Column(Integer, ForeignKey('tables.id'))
 
     def __init__(self, time_started=None):
         if time_started:
