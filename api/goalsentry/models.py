@@ -1,3 +1,8 @@
+"""
+Goal Sentry API
+Models
+"""
+
 from sqlalchemy import Column, Integer, String, ForeignKey, Table, DateTime
 from datetime import datetime as dt
 from sqlalchemy.orm import relationship
