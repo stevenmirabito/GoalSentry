@@ -4,12 +4,7 @@
             {{#link-to "index" class="brand item"}}{{site-config "name"}}{{/link-to}}
             {{#link-to "matches" class="item"}}Matches{{/link-to}}
             {{#link-to "rankings" class="item"}}Rankings{{/link-to}}
-            <a class="ui dropdown item">Scoreboards
-                <i class="dropdown icon"></i>
-                <div class="menu">
-                    {{#link-to "scoreboard" class="item"}}Foosball{{/link-to}}
-                </div>
-            </a>
+            {{#link-to "scoreboard" class="item"}}Scoreboard{{/link-to}}
         </div>
     </div>
     <div class="mobile only row">
@@ -24,12 +19,7 @@
         <div class="ui vertical navbar menu">
             {{#link-to "matches" class="item"}}Matches{{/link-to}}
             {{#link-to "rankings" class="item"}}Rankings{{/link-to}}
-            <div class="ui item">
-                <div class="text">Scoreboards</div>
-                <div class="menu">
-                    {{#link-to "scoreboard" class="item"}}Foosball{{/link-to}}
-                </div>
-            </div>
+            {{#link-to "scoreboard" class="item"}}Scoreboard{{/link-to}}
         </div>
     </div>
 {{/responsive-menu}}
