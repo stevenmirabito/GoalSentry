@@ -1,26 +1,20 @@
 {{#responsive-menu}}
     <div class="computer tablet only row">
         <div class="ui large fixed navbar menu page grid">
-            <a href="" class="brand item">Project Name</a>
-            <a href="" class="item">Home</a>
-            <a href="" class="item">About</a>
-            <a href="" class="item">Contact</a>
-            <a class="ui dropdown item">Dropdown
+            {{#link-to "index" class="brand item"}}{{site-config "name"}}{{/link-to}}
+            {{#link-to "matches" class="item"}}Matches{{/link-to}}
+            {{#link-to "rankings" class="item"}}Rankings{{/link-to}}
+            <a class="ui dropdown item">Scoreboards
                 <i class="dropdown icon"></i>
                 <div class="menu">
-                    <div class="item">Action</div>
-                    <div class="item">Another action</div>
-                    <div class="item">Something else here</div>
-                    <div class="ui divider"></div>
-                    <div class="item">Separated link</div>
-                    <div class="item">One more separated link</div>
+                    {{#link-to "scoreboard" class="item"}}Foosball{{/link-to}}
                 </div>
             </a>
         </div>
     </div>
     <div class="mobile only row">
         <div class="ui large fixed navbar menu">
-            <a href="" class="brand item">Project Name</a>
+            {{#link-to "index" class="brand item"}}{{site-config "name"}}{{/link-to}}
             <div class="right menu open">
                 <a href="" class="menu item">
                     <i class="sidebar icon"></i>
@@ -28,69 +22,28 @@
             </div>
         </div>
         <div class="ui vertical navbar menu">
-            <a href="" class="item">Home</a>
-            <a href="" class="item">About</a>
-            <a href="" class="item">Contact</a>
+            {{#link-to "matches" class="item"}}Matches{{/link-to}}
+            {{#link-to "rankings" class="item"}}Rankings{{/link-to}}
             <div class="ui item">
-                <div class="text">Dropdown</div>
+                <div class="text">Scoreboards</div>
                 <div class="menu">
-                    <a class="item">Action</a>
-                    <a class="item">Another action</a>
-                    <a class="item">Something else here</a>
-                    <a class="ui aider"></a>
-                    <a class="item">Separated link</a>
-                    <a class="item">One more separated link</a>
+                    {{#link-to "scoreboard" class="item"}}Foosball{{/link-to}}
                 </div>
             </div>
         </div>
     </div>
 {{/responsive-menu}}
 
-<div class="ui main text container">
+<div class="ui main container">
     {{outlet}}
 </div>
 
 <div class="ui inverted vertical footer segment">
     <div class="ui center aligned container">
-        <div class="ui stackable inverted divided grid">
-            <div class="three wide column">
-                <h4 class="ui inverted header">Group 1</h4>
-                <div class="ui inverted link list">
-                    <a href="#" class="item">Link One</a>
-                    <a href="#" class="item">Link Two</a>
-                    <a href="#" class="item">Link Three</a>
-                    <a href="#" class="item">Link Four</a>
-                </div>
-            </div>
-            <div class="three wide column">
-                <h4 class="ui inverted header">Group 2</h4>
-                <div class="ui inverted link list">
-                    <a href="#" class="item">Link One</a>
-                    <a href="#" class="item">Link Two</a>
-                    <a href="#" class="item">Link Three</a>
-                    <a href="#" class="item">Link Four</a>
-                </div>
-            </div>
-            <div class="three wide column">
-                <h4 class="ui inverted header">Group 3</h4>
-                <div class="ui inverted link list">
-                    <a href="#" class="item">Link One</a>
-                    <a href="#" class="item">Link Two</a>
-                    <a href="#" class="item">Link Three</a>
-                    <a href="#" class="item">Link Four</a>
-                </div>
-            </div>
-            <div class="seven wide column">
-                <h4 class="ui inverted header">Footer Header</h4>
-                <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
-            </div>
-        </div>
-        <div class="ui inverted section divider"></div>
+        <div class="item">Copyright &copy; {{siteConfig "name"}}</div>
         <div class="ui horizontal inverted small divided link list">
-            <a class="item" href="#">Site Map</a>
-            <a class="item" href="#">Contact Us</a>
-            <a class="item" href="#">Terms and Conditions</a>
-            <a class="item" href="#">Privacy Policy</a>
+            <div class="item">Powered by <strong>Goal Sentry</strong></div>
+            <a class="item" href="#"><i class="github icon"></i> GitHub</a>
         </div>
     </div>
 </div>
